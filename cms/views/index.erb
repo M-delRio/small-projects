@@ -1,0 +1,25 @@
+<ul>
+  <% @docs.each do |doc| %>
+    <li>
+      <a href="/<%= doc %>"><%= doc %></a>
+      <a href="/<%= doc %>/edit">Edit</a>
+      <a href="/<%= doc %>/duplicate">Duplicate</a>
+      <form class="inline" method="post" action="/<%= doc %>/delete">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  <% end %>
+<ul>
+
+<p><a href="/new_document">New Document</a></p>
+
+<% if session[:username] %>
+  <form method="post" action="/users/signout">
+    <p class="user-status">
+      "Signed in as <%= session[:username] %>.
+      <button type="submit">Sign Out</button>
+  </form>
+<% else %>
+  <p class="user-status"><a href="/users/signin">Sign In</a></p>
+  <p class="user-status"><a href="/users/signup">Sign Up</a></p>
+<% end %>

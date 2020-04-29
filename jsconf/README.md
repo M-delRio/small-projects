@@ -1,0 +1,2 @@
+- Recreation of JSConfBrazil site using only HTML and CSS
+- Display consists mainly of a mix of Flex and Grid layouts

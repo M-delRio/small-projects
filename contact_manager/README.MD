@@ -1,0 +1,1 @@
+An application to manage contacts using JavaScript, jQuery, Handlebars

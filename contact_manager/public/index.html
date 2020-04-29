@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contact Manager</title>
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/handlebars.js"></script>
+  <script src="/javascripts/cont_manager.js"></script>
+  <link rel="stylesheet" href="/stylesheets/cont_manager.css" />
+</head>
+<body>
+
+  <div id="overlay"></div>
+  <header>
+    <h1>Contact Manager</h1>
+    <h3>Using JS, jQuery, Handlebar, HTML & CSS (duh)</h3>
+  </header>
+
+  <div id="delete_modal">
+    <p>Are you sure you want to delete this todo?</p>
+    <div>
+      <button>Yes</button>
+      <button>No</button>
+    </div>
+  </div>
+
+  <main>
+    <nav> 
+      <button class="add" type="submit">Add Contact</button>
+      
+      <form id="tag_filter">
+        <fieldset>
+          <legend>View Contacts by Tags</legend>
+          <div>
+            <label>
+              Work
+              <input name="work" type="checkbox" />
+            </label>  
+            <label>
+              Friend
+              <input name="friend" type="checkbox" />
+            </label>  
+            <label>
+              Business
+              <input name="business" type="checkbox" />
+            </label>  
+          </div>
+        </fieldset>
+      </form>
+      
+      <input type="text" placeholder="Search"/>
+    </nav>
+
+    <section id="no_contacts_display" class="hidden">
+      <h3>There aren't any contacts</h3>
+      <button class="add" type="submit">Add Contact</button>
+    </section>
+
+    <section id="display_contacts"></section> 
+
+    <section id="main_form_section" class="hidden"></section>
+  </main>  
+    
+  <footer>
+    <p>Developed by Mike d</p>
+  </footer>
+
+  <script id="contacts" type="text/x-handlebars-template">
+    <ul>
+      {{#each contacts}}  
+        <li>
+          <h2>{{full_name}}</h2>
+          <dl data-id={{id}}>
+            <dt>Phone Number:</dt>
+            <dd>{{phone_number}}</dd>
+            <dt>Email:</dt>
+            <dd>{{email}}</dd>
+          </dl>
+          <button id="edit" type="submit">Edit</button>
+          <button id="delete" type="button">Delete</button>
+        </li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <script id="contact_form" type="text/x-handlebars-template">
+    <form>
+      <fieldset>
+        <h2>{{title}}</h2>
+        <label>Full Name
+          <input name="full_name" id="name" type="text" value ="{{full_name}}" required />
+        </label>   
+        <p class="hidden">Please enter the valid name field</p>
+        
+        <label>Email address
+          <input name="email" id="email" type="email" value ="{{email}}" required />
+        </label>
+        <p class="hidden">Please enter the valid email field</p>
+
+        <label>Telephone number
+          <input name="phone_number" id="telephone" type="number" value="{{phone_number}}" required />
+        </label>
+        <p class="hidden">Please enter the valid phone field</p>
+      </fieldset> 
+        
+    <fieldset>
+      <h3>Select Any Applicable Tags for this Contact</h3>
+      <label>
+        Work
+        <input name="work" type="checkbox" {{tags.work}} />
+      </label>  
+      <label>
+        Friend
+        <input name="friend" type="checkbox" {{tags.friend}}/>
+      </label>  
+      <label>
+        Business
+        <input name="business" type="checkbox" {{tags.business}}/>
+      </label>  
+    </fieldset>
+
+    <div id="contact_form_buttons">
+      <button id="submit" name ="{{button_name}}" type="submit">Submit</button>
+      <button id="cancel" type="button">Cancel</button>
+    </div>
+    </form>
+  </script>
+
+</body>
+</html>
